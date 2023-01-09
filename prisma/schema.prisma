@@ -1,0 +1,65 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Transaction {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+
+  amount Int
+  status String
+
+  customer   Customer? @relation(fields: [customerId], references: [id])
+  qrCode     QRCode?   @relation(fields: [qRCodeId], references: [id])
+  qRCodeId   Int?
+  customerId Int?
+}
+
+model QRCode {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+
+  url    Int
+  base64 String
+  plain  String
+
+  Transaction Transaction[]
+}
+
+model Customer {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+
+  name  String
+  email String
+
+  phone       Phone?        @relation(fields: [phoneId], references: [id])
+  document    Document?     @relation(fields: [documentId], references: [id])
+  phoneId     Int?
+  documentId  Int?
+  Transaction Transaction[]
+}
+
+model Document {
+  id Int @id @default(autoincrement())
+
+  type     String
+  number   String
+  Customer Customer[]
+}
+
+model Phone {
+  id Int @id @default(autoincrement())
+
+  type     String
+  number   String
+  Customer Customer[]
+}
