@@ -3,6 +3,7 @@ import { CreatePixTransaction } from "src/application/use-cases/create-pix-trans
 import { GetPixTransaction } from "src/application/use-cases/get-pix-transaction/get-pix-transaction";
 import { GetTransaction } from "src/application/use-cases/get-transaction/get-transaction";
 import { NoticeTransaction } from "src/application/use-cases/notice-transaction/notice-transaction";
+import { RefundPixTransaction } from "src/application/use-cases/refund-pix-transaction/refund-pix-transaction";
 import { PaymeeController } from "./controllers/paymee.controller";
 
 
@@ -13,7 +14,8 @@ import { PaymeeController } from "./controllers/paymee.controller";
     GetPixTransaction,
     CreatePixTransaction,
     GetTransaction,
-    NoticeTransaction
+    NoticeTransaction,
+    RefundPixTransaction
   ],
 })
 export class HttpModule {}

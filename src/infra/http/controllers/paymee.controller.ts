@@ -1,8 +1,9 @@
-import { Body, Controller, Get, Param, Post } from "@nestjs/common";
+import { Body, Controller, Get, Param, Post, Put } from "@nestjs/common";
 import { CreatePixTransaction } from "src/application/use-cases/create-pix-transaction/create-pix-transaction";
 import { GetPixTransaction } from "src/application/use-cases/get-pix-transaction/get-pix-transaction";
 import { GetTransaction } from "src/application/use-cases/get-transaction/get-transaction";
 import { IPayMeeNoticeRequest, NoticeTransaction } from "src/application/use-cases/notice-transaction/notice-transaction";
+import { IRefundPixTransactionRequest, RefundPixTransaction } from "src/application/use-cases/refund-pix-transaction/refund-pix-transaction";
 import { IPayMeeRequest } from "../dtos/IPayMeeRequest/IPayMeeRequest";
 
 
@@ -13,6 +14,7 @@ export class PaymeeController {
     private readonly createPixTransaction: CreatePixTransaction,
     private readonly getTransaction: GetTransaction,
     private readonly noticeTransaction: NoticeTransaction,
+    private readonly refundPixTransaction: RefundPixTransaction
   ) {}
 
   @Get('transactions/:transactionId')
@@ -44,5 +46,23 @@ export class PaymeeController {
         .execute(body)
 
       return { message: 'ok' }
+    }
+
+    @Post('transactions/:transactionId/refund')
+    async refundPixTransactionController(
+      @Param('transactionId') transactionId: string,
+      @Body() body: IRefundPixTransactionRequest
+    ){
+      const {amount, reason} = body;
+
+      const response = await this.refundPixTransaction
+        .execute({
+          transactionId,
+          amount,
+          reason
+        });
+
+
+      return response;
     }
 }
