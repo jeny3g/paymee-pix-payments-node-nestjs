@@ -1,7 +1,7 @@
 
 import { Injectable } from "@nestjs/common";
 import { CANCELLED } from "dns";
-import { PAID, PENDING } from "src/application/constants/paymee-transaction-status";
+import { PAID, PENDING } from "src/shared/constants/paymee-transaction-status";
 
 export interface IPayMeeNoticeRequest {
   referenceCode: string;

@@ -1,7 +1,7 @@
 import { Injectable } from "@nestjs/common";
-import { apiPayMee } from "src/application/services/api";
-import { IPayMeePayoutResponse } from "src/infra/http/dtos/IPayMeeResponse/IPayMeePayoutResponse";
-import { AppError } from "src/infra/http/errors/app-error";
+import { apiPayMee } from "src/shared/services/api";
+import { IPayMeePayoutResponse } from "src/shared/infra/http/dtos/IPayMeeResponse/IPayMeePayoutResponse";
+import { AppError } from "src/shared/infra/http/errors/app-error";
 
 @Injectable()
 class GetTransaction {

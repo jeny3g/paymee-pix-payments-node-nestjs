@@ -1,7 +1,7 @@
 import { Injectable } from "@nestjs/common";
-import { apiPayMee } from "src/application/services/api";
-import { IPayMeeRefundResponse } from "src/infra/http/dtos/IPayMeeRefundResponse/IPayMeeRefundResponse";
-import { AppError } from "src/infra/http/errors/app-error";
+import { apiPayMee } from "src/shared/services/api";
+import { IPayMeeRefundResponse } from "src/shared/infra/http/dtos/IPayMeeRefundResponse/IPayMeeRefundResponse";
+import { AppError } from "src/shared/infra/http/errors/app-error";
 
 export interface IRefundPixTransactionRequest {
   transactionId: string;
