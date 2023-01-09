@@ -9,7 +9,7 @@ export interface IPayMeeNoticeRequest {
 }
 
 @Injectable()
-class NoticeTransaction {
+class NoticePixTransaction {
   async execute({
     newStatus,
     referenceCode,
@@ -28,4 +28,4 @@ class NoticeTransaction {
   }
 }
 
-export { NoticeTransaction };
+export { NoticePixTransaction };
