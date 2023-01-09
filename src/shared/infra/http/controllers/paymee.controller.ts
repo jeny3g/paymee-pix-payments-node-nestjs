@@ -1,11 +1,10 @@
+import { CreatePixTransaction } from "@application/use-cases/create-pix-transaction/create-pix-transaction";
+import { GetPixTransaction } from "@application/use-cases/get-pix-transaction/get-pix-transaction";
+import { GetTransaction } from "@application/use-cases/get-transaction/get-transaction";
+import { NoticePixTransaction, IPayMeeNoticeRequest } from "@application/use-cases/notice-transaction/notice-transaction";
+import { RefundPixTransaction, IRefundPixTransactionRequest } from "@application/use-cases/refund-pix-transaction/refund-pix-transaction";
 import { Body, Controller, Get, Param, Post, Put } from "@nestjs/common";
-import { CreatePixTransaction } from "src/application/use-cases/create-pix-transaction/create-pix-transaction";
-import { GetPixTransaction } from "src/application/use-cases/get-pix-transaction/get-pix-transaction";
-import { GetTransaction } from "src/application/use-cases/get-transaction/get-transaction";
-import { IPayMeeNoticeRequest, NoticePixTransaction } from "src/application/use-cases/notice-transaction/notice-transaction";
-import { IRefundPixTransactionRequest, RefundPixTransaction } from "src/application/use-cases/refund-pix-transaction/refund-pix-transaction";
 import { IPayMeeRequest } from "../dtos/IPayMeeRequest/IPayMeeRequest";
-
 
 @Controller('api/v1/paymee')
 export class PaymeeController {

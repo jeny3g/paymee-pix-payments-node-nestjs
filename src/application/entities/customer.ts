@@ -1,4 +1,4 @@
-import { Document } from "./document";
+import { Document } from "./document/document";
 import { Phone } from "./phone";
 
 type CustomerProps = {

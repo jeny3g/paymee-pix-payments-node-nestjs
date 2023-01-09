@@ -1,9 +1,9 @@
 import { Injectable } from "@nestjs/common";
-import { apiPayMee } from "src/shared/services/api";
-import { IPayMeePaymentConfirmationRequest } from "src/shared/infra/http/dtos/IPayMeePaymentConfirmationResponse/IPayMeePaymentConfirmationRequest";
-import { IPayMeeRequest } from "src/shared/infra/http/dtos/IPayMeeRequest/IPayMeeRequest";
-import { IPayMeeResponse } from "src/shared/infra/http/dtos/IPayMeeResponse/IPayMeeResponse";
-import { AppError } from "src/shared/infra/http/errors/app-error";
+import { IPayMeeRequest } from "@shared/infra/http/dtos/IPayMeeRequest/IPayMeeRequest";
+import { IPayMeeResponse } from "@shared/infra/http/dtos/IPayMeeResponse/IPayMeeResponse";
+import { AppError } from "@shared/infra/http/errors/app-error";
+import { apiPayMee } from "@shared/services/api";
+
 
 @Injectable()
 class CreatePixTransaction {

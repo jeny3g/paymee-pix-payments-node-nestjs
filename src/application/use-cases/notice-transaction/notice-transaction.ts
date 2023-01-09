@@ -1,7 +1,6 @@
 
 import { Injectable } from "@nestjs/common";
-import { CANCELLED } from "dns";
-import { PAID, PENDING } from "src/shared/constants/paymee-transaction-status";
+import { PaymeeTransactionStatus } from "@shared/constants/paymee-transaction-status";
 
 export interface IPayMeeNoticeRequest {
   referenceCode: string;
@@ -14,15 +13,15 @@ class NoticePixTransaction {
     newStatus,
     referenceCode,
   }: IPayMeeNoticeRequest): Promise<void> {
-    if (newStatus === PAID) {
+    if (newStatus === PaymeeTransactionStatus.PAID) {
       console.log(`PayMee: Transaction paid, orderId: ${referenceCode}`);
     }
 
-    if (newStatus === CANCELLED) {
+    if (newStatus === PaymeeTransactionStatus.CANCELLED) {
       console.log(`PayMee: Transaction cancelled, orderId: ${referenceCode}`);
     }
 
-    if (newStatus === PENDING) {
+    if (newStatus === PaymeeTransactionStatus.PENDING) {
       console.log(`PayMee: Transaction pending, orderId: ${referenceCode}`);
     }
   }
