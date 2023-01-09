@@ -1,6 +1,7 @@
 import { Body, Controller, Get, Param, Post } from "@nestjs/common";
 import { CreatePixTransaction } from "src/application/use-cases/create-pix-transaction/create-pix-transaction";
 import { GetPixTransaction } from "src/application/use-cases/get-pix-transaction/get-pix-transaction";
+import { GetTransaction } from "src/application/use-cases/get-transaction/get-transaction";
 import { IPayMeeRequest } from "../dtos/IPayMeeRequest/IPayMeeRequest";
 
 
@@ -8,8 +9,16 @@ import { IPayMeeRequest } from "../dtos/IPayMeeRequest/IPayMeeRequest";
 export class PaymeeController {
   constructor(
     private readonly getPixTransaction: GetPixTransaction,
-    private createPixTransaction: CreatePixTransaction,
+    private readonly createPixTransaction: CreatePixTransaction,
+    private readonly getTransaction: GetTransaction
   ) {}
+
+  @Get('transactions/:transactionId')
+  async getTransactionController(
+    @Param('transactionId') transactionId: string,
+  ) {
+    return await this.getTransaction.execute(transactionId);
+  }
 
   @Get('transactions/pix/:transactionId')
   async getPixTransactionController(

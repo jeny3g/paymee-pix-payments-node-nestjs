@@ -1,6 +1,7 @@
 import { Module } from "@nestjs/common";
 import { CreatePixTransaction } from "src/application/use-cases/create-pix-transaction/create-pix-transaction";
 import { GetPixTransaction } from "src/application/use-cases/get-pix-transaction/get-pix-transaction";
+import { GetTransaction } from "src/application/use-cases/get-transaction/get-transaction";
 import { PaymeeController } from "./controllers/paymee.controller";
 
 
@@ -9,7 +10,8 @@ import { PaymeeController } from "./controllers/paymee.controller";
   controllers: [PaymeeController],
   providers: [
     GetPixTransaction,
-    CreatePixTransaction
+    CreatePixTransaction,
+    GetTransaction
   ],
 })
 export class HttpModule {}
