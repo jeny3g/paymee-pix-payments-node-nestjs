@@ -1,8 +1,7 @@
 import { IPayMeePhone } from "../IPayMeePhone";
-import { IPayMeeBankDetails } from "../IPayMeeResponse/IPayMeeBankDetails";
 import { IPaymeeShopper } from "../IPaymeeShopper";
 
-export interface IPayMeeRequest {
+export interface ICreatePixTransaction {
   currency: string;
   amount: number;
   referenceCode: string;
@@ -11,5 +10,4 @@ export interface IPayMeeRequest {
   callbackURL: string;
 
   shopper: IPaymeeShopper;
-  phone: IPayMeePhone;
 }

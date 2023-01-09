@@ -1,7 +1,7 @@
 import { Document } from "./document/document";
 import { Phone } from "./phone";
 
-type CustomerProps = {
+export type CustomerProps = {
   id: string;
   createdAt: Date;
   name: string;

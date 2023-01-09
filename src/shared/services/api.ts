@@ -1,3 +1,5 @@
+import 'dotenv/config';
+
 import axios from "axios";
 import { APP_KEY_HEADER, APP_TOKEN_HEADER } from "../constants/api-path-paymee";
 

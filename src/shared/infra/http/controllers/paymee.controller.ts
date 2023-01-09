@@ -4,7 +4,7 @@ import { GetTransaction } from "@application/use-cases/get-transaction/get-trans
 import { NoticePixTransaction, IPayMeeNoticeRequest } from "@application/use-cases/notice-transaction/notice-transaction";
 import { RefundPixTransaction, IRefundPixTransactionRequest } from "@application/use-cases/refund-pix-transaction/refund-pix-transaction";
 import { Body, Controller, Get, Param, Post, Put } from "@nestjs/common";
-import { IPayMeeRequest } from "../dtos/IPayMeeRequest/IPayMeeRequest";
+import { ICreatePixTransaction } from "../dtos/ICreatePixTransaction/ICreatePixTransaction";
 
 @Controller('api/v1/paymee')
 export class PaymeeController {
@@ -33,7 +33,7 @@ export class PaymeeController {
   }
 
   @Post('transactions/pix')
-    async createPixTransactionController(@Body() body: IPayMeeRequest){
+    async createPixTransactionController(@Body() body: ICreatePixTransaction){
       const response = await this.createPixTransaction.execute(body)
 
       return response
