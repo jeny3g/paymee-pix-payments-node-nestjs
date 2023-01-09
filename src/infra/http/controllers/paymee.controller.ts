@@ -1,10 +1,15 @@
-import { Controller, Get, Param } from "@nestjs/common";
+import { Body, Controller, Get, Param, Post } from "@nestjs/common";
+import { CreatePixTransaction } from "src/application/use-cases/create-pix-transaction/create-pix-transaction";
 import { GetPixTransaction } from "src/application/use-cases/get-pix-transaction/get-pix-transaction";
+import { IPayMeeRequest } from "../dtos/IPayMeeRequest/IPayMeeRequest";
 
 
 @Controller('api/v1/paymee')
 export class PaymeeController {
-  constructor(private readonly getPixTransaction: GetPixTransaction) {}
+  constructor(
+    private readonly getPixTransaction: GetPixTransaction,
+    private createPixTransaction: CreatePixTransaction,
+  ) {}
 
   @Get('transactions/pix/:transactionId')
   async getPixTransactionController(
@@ -14,4 +19,11 @@ export class PaymeeController {
 
     return response;
   }
+
+  @Post('transactions/pix')
+    async createPixTransactionController(@Body() body: IPayMeeRequest){
+      const response = await this.createPixTransaction.execute(body)
+
+      return response
+    }
 }
