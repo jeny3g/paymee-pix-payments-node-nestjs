@@ -1,7 +1,7 @@
-import { Injectable } from "@nestjs/common";
-import { IPayMeeRefundResponse } from "@shared/infra/http/dtos/IPayMeeRefundResponse/IPayMeeRefundResponse";
-import { AppError } from "@shared/infra/http/errors/app-error";
-import { apiPayMee } from "@shared/services/api";
+import { Injectable } from '@nestjs/common';
+import { IPayMeeRefundResponse } from '@shared/infra/http/dtos/IPayMeeRefundResponse/IPayMeeRefundResponse';
+import { AppError } from '@shared/infra/http/errors/app-error';
+import { apiPayMee } from '@shared/services/api';
 
 export interface IRefundPixTransactionRequest {
   transactionId: string;
@@ -22,7 +22,7 @@ class RefundPixTransaction {
         {
           amount,
           reason,
-        }
+        },
       );
 
       return response.data;

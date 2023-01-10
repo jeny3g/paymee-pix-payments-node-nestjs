@@ -1,13 +1,11 @@
-import { IPaymeeShopper } from "@shared/infra/http/dtos/IPaymeeShopper";
-import { randomUUID } from "crypto";
-import { makeDocumentTranscationFactory } from "./document-transaction-request";
-import { makePhoneTranscationFactory } from "./phone-transaction-request";
+import { IPaymeeShopper } from '@shared/infra/http/dtos/IPaymeeShopper';
+import { makeDocumentTranscationFactory } from './document-transaction-request';
+import { makePhoneTranscationFactory } from './phone-transaction-request';
 
 type Override = Partial<IPaymeeShopper>;
 
 export function makeShopperTranscationFactory(
-  override: Override = {
-  },
+  override: Override = {},
 ): IPaymeeShopper {
   return {
     name: 'John Doe',

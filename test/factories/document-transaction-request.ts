@@ -1,10 +1,9 @@
-import { IPayMeeDocument } from "@shared/infra/http/dtos/IPayMeeDocument";
+import { IPayMeeDocument } from '@shared/infra/http/dtos/IPayMeeDocument';
 
 type Override = Partial<IPayMeeDocument>;
 
 export function makeDocumentTranscationFactory(
-  override: Override = {
-  },
+  override: Override = {},
 ): IPayMeeDocument {
   return {
     type: 'CPF',

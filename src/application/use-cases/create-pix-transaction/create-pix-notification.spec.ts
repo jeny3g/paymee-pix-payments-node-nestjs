@@ -1,8 +1,8 @@
-import { makeCreatePixTranscationFactory } from "@tests/factories/pix-transaction-request";
-import { InMemoryTransactionsRepository } from "@tests/repositories/in-memory-transactions-repository";
-import { CreatePixTransaction } from "./create-pix-transaction";
+import { makeCreatePixTranscationFactory } from '@tests/factories/pix-transaction-request';
+import { InMemoryTransactionsRepository } from '@tests/repositories/in-memory-transactions-repository';
+import { CreatePixTransaction } from './create-pix-transaction';
 
-describe("CreatePixNotification", () => {
+describe('CreatePixNotification', () => {
   it('should be able to create a pix transaction', async () => {
     const createPixRequest = makeCreatePixTranscationFactory();
     const transactionsRepository = new InMemoryTransactionsRepository();
@@ -19,4 +19,4 @@ describe("CreatePixNotification", () => {
     expect(createdPixTransaction).toHaveProperty('message');
     expect(createdPixTransaction).toHaveProperty('response');
   });
-})
+});

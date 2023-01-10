@@ -1,6 +1,5 @@
-
-import { Injectable } from "@nestjs/common";
-import { PaymeeTransactionStatus } from "@shared/constants/paymee-transaction-status";
+import { Injectable } from '@nestjs/common';
+import { PaymeeTransactionStatus } from '@shared/constants/paymee-transaction-status';
 
 export interface IPayMeeNoticeRequest {
   referenceCode: string;

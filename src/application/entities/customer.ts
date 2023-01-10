@@ -1,6 +1,6 @@
-import { randomUUID } from "crypto";
-import { Document } from "./document/document";
-import { Phone } from "./phone";
+import { randomUUID } from 'crypto';
+import { Document } from './document/document';
+import { Phone } from './phone';
 
 export type CustomerProps = {
   id?: string;
@@ -13,14 +13,14 @@ export type CustomerProps = {
 
   phoneId?: string;
   documentId?: string;
-}
+};
 
 export class Customer {
   private _id: string;
   private props: CustomerProps;
 
   constructor(props: CustomerProps, id?: string) {
-    this._id = id ?? randomUUID()
+    this._id = id ?? randomUUID();
     this.props = {
       ...props,
       createdAt: props.createdAt || new Date(),

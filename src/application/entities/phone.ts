@@ -3,28 +3,28 @@ type PhoneProps = {
 
   type: string;
   number: string;
-}
+};
 
-export type UnsavedPhoneProps = Omit<PhoneProps, "id">;
+export type UnsavedPhoneProps = Omit<PhoneProps, 'id'>;
 
-export class Phone{
-  private _id:string;
+export class Phone {
+  private _id: string;
   private props: PhoneProps;
 
-  constructor(props: PhoneProps){
+  constructor(props: PhoneProps) {
     this._id = props.id;
-    this.props = {...props};
+    this.props = { ...props };
   }
 
-  get id(){
+  get id() {
     return this._id;
   }
 
-  get type(){
+  get type() {
     return this.props.type;
   }
 
-  get number(){
+  get number() {
     return this.props.number;
   }
 }

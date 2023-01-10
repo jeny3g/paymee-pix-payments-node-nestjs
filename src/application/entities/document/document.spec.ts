@@ -1,6 +1,6 @@
-import { DocumentTypes } from "@shared/constants/document-types";
-import { ErrorMessages } from "@shared/constants/error-messages";
-import { Document, DocumentProps } from "./document";
+import { DocumentTypes } from '@shared/constants/document-types';
+import { ErrorMessages } from '@shared/constants/error-messages';
+import { Document, DocumentProps } from './document';
 
 describe('Document', () => {
   let document: Document;
@@ -10,7 +10,7 @@ describe('Document', () => {
     props = {
       id: '123',
       type: DocumentTypes.CPF,
-      number: '12345678910'
+      number: '12345678910',
     };
   });
 
@@ -28,7 +28,9 @@ describe('Document', () => {
   describe('validateDocument', () => {
     it('should throw an error when type is invalid', () => {
       props.type = 'invalid';
-      expect(() => new Document(props)).toThrowError(ErrorMessages.INVALID_DOCUMENT_TYPE);
+      expect(() => new Document(props)).toThrowError(
+        ErrorMessages.INVALID_DOCUMENT_TYPE,
+      );
     });
 
     it('should throw an error when CPF is invalid', () => {
@@ -42,7 +44,9 @@ describe('Document', () => {
       props.type = DocumentTypes.CNPJ;
       props.number = '123456789';
 
-      expect(() => new Document(props)).toThrowError(ErrorMessages.INVALID_CNPJ);
+      expect(() => new Document(props)).toThrowError(
+        ErrorMessages.INVALID_CNPJ,
+      );
     });
   });
 });

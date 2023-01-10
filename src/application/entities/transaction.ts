@@ -1,6 +1,6 @@
-import { randomUUID } from "crypto";
-import { Customer } from "./customer";
-import { QRCode } from "./qr-code";
+import { randomUUID } from 'crypto';
+import { Customer } from './customer';
+import { QRCode } from './qr-code';
 
 export type TransactionProps = {
   id?: string;
@@ -10,16 +10,19 @@ export type TransactionProps = {
   status: string;
   customer: Customer;
   qrCode: QRCode;
-}
+};
 
-export type UnsavedTransactionProps = Omit<TransactionProps, "id" | "createdAt">;
+export type UnsavedTransactionProps = Omit<
+  TransactionProps,
+  'id' | 'createdAt'
+>;
 
 export class Transaction {
   private _id: string;
   private props: TransactionProps;
 
- constructor(props: TransactionProps, id?: string) {
-  this._id = id ?? randomUUID()
+  constructor(props: TransactionProps, id?: string) {
+    this._id = id ?? randomUUID();
 
     this.props = {
       ...props,

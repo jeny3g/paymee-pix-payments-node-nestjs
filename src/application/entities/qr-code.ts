@@ -1,13 +1,13 @@
-import { randomUUID } from "crypto";
+import { randomUUID } from 'crypto';
 
 export type QRCodeProps = {
- id?: string;
- createdAt?: Date;
+  id?: string;
+  createdAt?: Date;
 
- url: string;
- base64: string;
- plain: string;
-}
+  url: string;
+  base64: string;
+  plain: string;
+};
 
 export type UnsavedQRCodeProps = Omit<QRCodeProps, 'id' | 'createdAt'>;
 
@@ -16,7 +16,7 @@ export class QRCode {
   private props: QRCodeProps;
 
   constructor(props: QRCodeProps, id?: string) {
-    this._id = id ?? randomUUID()
+    this._id = id ?? randomUUID();
 
     this.props = {
       ...props,
@@ -24,27 +24,27 @@ export class QRCode {
     };
   }
 
-  get id(): string{
-    return this._id
+  get id(): string {
+    return this._id;
   }
 
   get createdAt(): Date {
-    return this.props.createdAt
+    return this.props.createdAt;
   }
 
   set createdAt(date: Date) {
-    this.props.createdAt = date
+    this.props.createdAt = date;
   }
 
   get url(): string {
-    return this.props.url
+    return this.props.url;
   }
 
   get base64(): string {
-    return this.props.base64
+    return this.props.base64;
   }
 
   get plain(): string {
-    return this.props.plain
+    return this.props.plain;
   }
 }

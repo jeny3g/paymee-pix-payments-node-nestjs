@@ -1,10 +1,9 @@
-import { IPayMeePhone } from "@shared/infra/http/dtos/IPayMeePhone";
+import { IPayMeePhone } from '@shared/infra/http/dtos/IPayMeePhone';
 
 type Override = Partial<IPayMeePhone>;
 
 export function makePhoneTranscationFactory(
-  override: Override = {
-  },
+  override: Override = {},
 ): IPayMeePhone {
   return {
     type: 'MOBILE',

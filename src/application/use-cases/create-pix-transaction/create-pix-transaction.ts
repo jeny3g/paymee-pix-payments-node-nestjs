@@ -1,16 +1,16 @@
-import { Transaction, UnsavedTransactionProps } from "@application/entities/transaction";
-import { TransactionsRepository } from "@application/repositories/transactions-repository";
-import { Injectable } from "@nestjs/common";
-import { ICreatePixTransaction } from "@shared/infra/http/dtos/ICreatePixTransaction/ICreatePixTransaction";
-import { IPayMeeResponse } from "@shared/infra/http/dtos/IPayMeeResponse/IPayMeeResponse";
-import { CreatePixError } from "@shared/infra/http/errors/create-pix-error";
-import { apiPayMee } from "@shared/services/api";
-import { CreatePixTransactionMapper } from "./mappers/create-pix-transaction-mapper";
-
+import { TransactionsRepository } from '@application/repositories/transactions-repository';
+import { Injectable } from '@nestjs/common';
+import { ICreatePixTransaction } from '@shared/infra/http/dtos/ICreatePixTransaction/ICreatePixTransaction';
+import { IPayMeeResponse } from '@shared/infra/http/dtos/IPayMeeResponse/IPayMeeResponse';
+import { CreatePixError } from '@shared/infra/http/errors/create-pix-error';
+import { apiPayMee } from '@shared/services/api';
+import { CreatePixTransactionMapper } from './mappers/create-pix-transaction-mapper';
 
 @Injectable()
 class CreatePixTransaction {
-  constructor(private readonly transactionsRepository: TransactionsRepository){}
+  constructor(
+    private readonly transactionsRepository: TransactionsRepository,
+  ) {}
 
   async execute(request: ICreatePixTransaction): Promise<IPayMeeResponse> {
     this.mapDefaultPayMeeRequest(request);
@@ -25,18 +25,15 @@ class CreatePixTransaction {
 
     try {
       const { data } = await apiPayMee.post<IPayMeeResponse>(
-        "checkout/transparent",
-        request
+        'checkout/transparent',
+        request,
       );
 
-        const transaction = CreatePixTransactionMapper.toDomain(data);
+      const transaction = CreatePixTransactionMapper.toDomain(data);
 
-
-        await this.transactionsRepository.create(transaction);
+      await this.transactionsRepository.create(transaction);
 
       return data;
-
-
     } catch (error) {
       throw new CreatePixError({
         name: 'CREATE_PIX_ERROR',
@@ -46,9 +43,11 @@ class CreatePixTransaction {
     }
   }
 
-  private mapDefaultPayMeeRequest(request: ICreatePixTransaction): ICreatePixTransaction {
-    request.currency = request.currency || "BRL";
-    request.paymentMethod = request.paymentMethod || "PIX";
+  private mapDefaultPayMeeRequest(
+    request: ICreatePixTransaction,
+  ): ICreatePixTransaction {
+    request.currency = request.currency || 'BRL';
+    request.paymentMethod = request.paymentMethod || 'PIX';
 
     return request;
   }
