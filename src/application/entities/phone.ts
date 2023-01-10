@@ -1,4 +1,6 @@
-type PhoneProps = {
+import { randomUUID } from 'crypto';
+
+export type PhoneProps = {
   id?: string;
 
   type: string;
@@ -11,20 +13,24 @@ export class Phone {
   private _id: string;
   private props: PhoneProps;
 
-  constructor(props: PhoneProps) {
-    this._id = props.id;
+  constructor(props: PhoneProps, id?: string) {
+    this._id = id ?? randomUUID();
     this.props = { ...props };
   }
 
-  get id() {
+  getProps(): PhoneProps {
+    return this.props;
+  }
+
+  get id(): string {
     return this._id;
   }
 
-  get type() {
+  get type(): string {
     return this.props.type;
   }
 
-  get number() {
+  get number(): string {
     return this.props.number;
   }
 }

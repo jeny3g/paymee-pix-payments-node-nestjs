@@ -1,6 +1,6 @@
 import { randomUUID } from 'crypto';
-import { Customer } from './customer';
-import { QRCode } from './qr-code';
+import { CustomerProps } from './customer';
+import { QRCodeProps } from './qr-code';
 
 export type TransactionProps = {
   id?: string;
@@ -8,8 +8,8 @@ export type TransactionProps = {
 
   amount: number;
   status: string;
-  customer: Customer;
-  qrCode: QRCode;
+  customer: CustomerProps;
+  qrCode: QRCodeProps;
 };
 
 export type UnsavedTransactionProps = Omit<
@@ -27,14 +27,19 @@ export class Transaction {
     this.props = {
       ...props,
       createdAt: props.createdAt || new Date(),
+      id: this._id,
     };
   }
 
-  get id() {
+  getProps(): TransactionProps {
+    return this.props;
+  }
+
+  get id(): string {
     return this._id;
   }
 
-  get createdAt() {
+  get createdAt(): Date {
     return this.props.createdAt;
   }
 
@@ -42,19 +47,19 @@ export class Transaction {
     this.props.createdAt = date;
   }
 
-  get amount() {
+  get amount(): number {
     return this.props.amount;
   }
 
-  get status() {
+  get status(): string {
     return this.props.status;
   }
 
-  get customer() {
+  get customer(): CustomerProps {
     return this.props.customer;
   }
 
-  get qrCode() {
+  get qrCode(): QRCodeProps {
     return this.props.qrCode;
   }
 }

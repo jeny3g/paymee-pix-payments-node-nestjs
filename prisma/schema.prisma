@@ -11,23 +11,24 @@ datasource db {
 }
 
 model Transaction {
-  id        Int      @id @default(autoincrement())
+  id        String   @id @default(cuid())
   createdAt DateTime @default(now())
 
   amount Int
   status String
 
-  customer   Customer? @relation(fields: [customerId], references: [id])
-  qrCode     QRCode?   @relation(fields: [qRCodeId], references: [id])
-  qRCodeId   Int?
-  customerId Int?
+  customer Customer? @relation(fields: [customerId], references: [id])
+  qrCode   QRCode?   @relation(fields: [qRCodeId], references: [id])
+
+  qRCodeId   String?
+  customerId String?
 }
 
 model QRCode {
-  id        Int      @id @default(autoincrement())
+  id        String   @id @default(cuid())
   createdAt DateTime @default(now())
 
-  url    Int
+  url    String
   base64 String
   plain  String
 
@@ -35,17 +36,18 @@ model QRCode {
 }
 
 model Customer {
-  id        Int      @id @default(autoincrement())
+  id        String   @id @default(cuid())
   createdAt DateTime @default(now())
 
   name  String
   email String
 
-  phone       Phone?        @relation(fields: [phoneId], references: [id])
-  document    Document?     @relation(fields: [documentId], references: [id])
-  phoneId     Int?
-  documentId  Int?
-  Transaction Transaction[]
+  phone         Phone?        @relation(fields: [phoneId], references: [id])
+  document      Document?     @relation(fields: [documentId], references: [id])
+  phoneId       Int?
+  documentId    Int?
+  transactionId String?
+  Transaction   Transaction[]
 }
 
 model Document {

@@ -2,6 +2,7 @@ import { TransactionsRepository } from '@application/repositories/transactions-r
 import { Injectable } from '@nestjs/common';
 import { ICreatePixTransaction } from '@shared/infra/http/dtos/ICreatePixTransaction/ICreatePixTransaction';
 import { IPayMeeResponse } from '@shared/infra/http/dtos/IPayMeeResponse/IPayMeeResponse';
+import { AppError } from '@shared/infra/http/errors/app-error';
 import { CreatePixError } from '@shared/infra/http/errors/create-pix-error';
 import { apiPayMee } from '@shared/services/api';
 import { CreatePixTransactionMapper } from './mappers/create-pix-transaction-mapper';
@@ -12,7 +13,7 @@ class CreatePixTransaction {
     private readonly transactionsRepository: TransactionsRepository,
   ) {}
 
-  async execute(request: ICreatePixTransaction): Promise<IPayMeeResponse> {
+  async execute(request: ICreatePixTransaction): Promise<any> {
     this.mapDefaultPayMeeRequest(request);
 
     if (!request.amount) {
@@ -35,11 +36,8 @@ class CreatePixTransaction {
 
       return data;
     } catch (error) {
-      throw new CreatePixError({
-        name: 'CREATE_PIX_ERROR',
-        message: 'Error creating pix transaction in api',
-        cause: error,
-      });
+      console.log(error);
+      throw new AppError('Houve um erro ao criar a transação', 500, error);
     }
   }
 

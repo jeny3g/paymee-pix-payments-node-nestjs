@@ -24,6 +24,10 @@ export class QRCode {
     };
   }
 
+  getProps(): QRCodeProps {
+    return this.props;
+  }
+
   get id(): string {
     return this._id;
   }

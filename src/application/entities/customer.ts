@@ -1,6 +1,6 @@
 import { randomUUID } from 'crypto';
-import { Document } from './document/document';
-import { Phone } from './phone';
+import { DocumentProps } from './document/document';
+import { PhoneProps } from './phone';
 
 export type CustomerProps = {
   id?: string;
@@ -8,11 +8,8 @@ export type CustomerProps = {
   name: string;
   email: string;
 
-  phone?: Phone;
-  document?: Document;
-
-  phoneId?: string;
-  documentId?: string;
+  phone?: PhoneProps;
+  document?: DocumentProps;
 };
 
 export class Customer {
@@ -25,6 +22,10 @@ export class Customer {
       ...props,
       createdAt: props.createdAt || new Date(),
     };
+  }
+
+  getProps(): CustomerProps {
+    return this.props;
   }
 
   get id(): string {
@@ -47,19 +48,11 @@ export class Customer {
     return this.props.email;
   }
 
-  get phone(): Phone | undefined {
+  get phone(): PhoneProps | undefined {
     return this.props.phone;
   }
 
-  get document(): Document | undefined {
+  get document(): DocumentProps | undefined {
     return this.props.document;
-  }
-
-  get phoneId(): string | undefined {
-    return this.props.phoneId;
-  }
-
-  get documentId(): string | undefined {
-    return this.props.documentId;
   }
 }
