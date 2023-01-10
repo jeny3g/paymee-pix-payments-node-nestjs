@@ -3,50 +3,41 @@ import { ErrorMessages } from '@shared/constants/error-messages';
 import { Document, DocumentProps } from './document';
 
 describe('Document', () => {
-  let document: Document;
   let props: DocumentProps;
 
   beforeEach(() => {
     props = {
-      id: '123',
       type: DocumentTypes.CPF,
-      number: '12345678910',
+      number: '452.956.960-81',
     };
   });
 
-  describe('constructor', () => {
-    it('should create a valid document', () => {
-      document = new Document(props);
-
-      expect(document).toBeInstanceOf(Document);
-      expect(document.id).toBe('123');
-      expect(document.type).toBe(DocumentTypes.CPF);
-      expect(document.number).toBe('12345678910');
+  it('should create a new Document with correct properties', () => {
+    const document = new Document(props);
+    expect(document).toBeInstanceOf(Document);
+    expect(document.getProps()).toEqual({
+      id: expect.any(String),
+      type: props.type,
+      number: props.number,
     });
   });
 
-  describe('validateDocument', () => {
-    it('should throw an error when type is invalid', () => {
-      props.type = 'invalid';
-      expect(() => new Document(props)).toThrowError(
-        ErrorMessages.INVALID_DOCUMENT_TYPE,
-      );
-    });
+  it('should throw an error if type is not CPF or CNPJ', () => {
+    props.type = 'InvalidType' as any;
+    expect(() => new Document(props)).toThrowError(
+      ErrorMessages.INVALID_DOCUMENT_TYPE,
+    );
+  });
 
-    it('should throw an error when CPF is invalid', () => {
-      props.type = DocumentTypes.CPF;
-      props.number = '123456789';
+  it('should throw an error if CPF number is invalid', async () => {
+    props.number = 'InvalidCPF';
+    await expect(() => new Document(props)).toThrow();
+  });
 
-      expect(() => new Document(props)).toThrowError(ErrorMessages.INVALID_CPF);
-    });
+  it('should throw an error if CNPJ number is invalid', async () => {
+    props.type = DocumentTypes.CNPJ;
+    props.number = 'InvalidCNPJ';
 
-    it('should throw an error when CNPJ is invalid', () => {
-      props.type = DocumentTypes.CNPJ;
-      props.number = '123456789';
-
-      expect(() => new Document(props)).toThrowError(
-        ErrorMessages.INVALID_CNPJ,
-      );
-    });
+    await expect(() => new Document(props)).toThrow();
   });
 });

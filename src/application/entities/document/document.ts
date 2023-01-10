@@ -16,7 +16,7 @@ export class Document {
   private props: DocumentProps;
 
   constructor(props: DocumentProps, id?: string) {
-    // this.validateDocument(props);
+    this.validateDocument(props);
 
     this._id = id ?? randomUUID();
 
