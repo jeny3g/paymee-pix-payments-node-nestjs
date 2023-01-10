@@ -1,15 +1,17 @@
 type PhoneProps = {
-  id: string;
+  id?: string;
 
   type: string;
   number: string;
 }
 
+export type UnsavedPhoneProps = Omit<PhoneProps, "id">;
+
 export class Phone{
   private _id:string;
   private props: PhoneProps;
 
-  constructor(props:  PhoneProps){
+  constructor(props: PhoneProps){
     this._id = props.id;
     this.props = {...props};
   }

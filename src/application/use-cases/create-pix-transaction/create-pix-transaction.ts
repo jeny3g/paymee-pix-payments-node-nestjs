@@ -1,9 +1,11 @@
+import { Transaction, UnsavedTransactionProps } from "@application/entities/transaction";
 import { TransactionsRepository } from "@application/repositories/transactions-repository";
 import { Injectable } from "@nestjs/common";
 import { ICreatePixTransaction } from "@shared/infra/http/dtos/ICreatePixTransaction/ICreatePixTransaction";
 import { IPayMeeResponse } from "@shared/infra/http/dtos/IPayMeeResponse/IPayMeeResponse";
 import { CreatePixError } from "@shared/infra/http/errors/create-pix-error";
 import { apiPayMee } from "@shared/services/api";
+import { CreatePixTransactionMapper } from "./mappers/create-pix-transaction-mapper";
 
 
 @Injectable()
@@ -22,12 +24,19 @@ class CreatePixTransaction {
     }
 
     try {
-      const response = await apiPayMee.post<IPayMeeResponse>(
+      const { data } = await apiPayMee.post<IPayMeeResponse>(
         "checkout/transparent",
         request
       );
 
-      return response.data;
+        const transaction = CreatePixTransactionMapper.toDomain(data);
+
+
+        await this.transactionsRepository.create(transaction);
+
+      return data;
+
+
     } catch (error) {
       throw new CreatePixError({
         name: 'CREATE_PIX_ERROR',

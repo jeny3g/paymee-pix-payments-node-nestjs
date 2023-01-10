@@ -1,4 +1,3 @@
-import { IPayMeePhone } from "../IPayMeePhone";
 import { IPaymeeShopper } from "../IPaymeeShopper";
 
 export interface ICreatePixTransaction {

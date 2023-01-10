@@ -1,9 +1,10 @@
+import { randomUUID } from "crypto";
 import { Document } from "./document/document";
 import { Phone } from "./phone";
 
 export type CustomerProps = {
-  id: string;
-  createdAt: Date;
+  id?: string;
+  createdAt?: Date;
   name: string;
   email: string;
 
@@ -18,18 +19,24 @@ export class Customer {
   private _id: string;
   private props: CustomerProps;
 
-  constructor(props: CustomerProps) {
-    this.props = props;
-    this._id = props.id;
+  constructor(props: CustomerProps, id?: string) {
+    this._id = id ?? randomUUID()
+    this.props = {
+      ...props,
+      createdAt: props.createdAt || new Date(),
+    };
   }
 
   get id(): string {
     return this._id;
   }
 
-
   get createdAt(): Date {
     return this.props.createdAt;
+  }
+
+  set createdAt(date: Date) {
+    this.props.createdAt = date;
   }
 
   get name(): string {
