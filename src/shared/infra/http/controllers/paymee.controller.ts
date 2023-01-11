@@ -10,7 +10,7 @@ import {
   RefundPixTransaction,
 } from '@application/use-cases/refund-pix-transaction/refund-pix-transaction';
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
-import { ICreatePixTransaction } from '../dtos/paymee/request/create-transaction/ICreatePixTransaction';
+import { ICreatePixTransaction } from '../dtos/paymee/request/create-pix-transaction/ICreatePixTransaction';
 
 @Controller('api/v1/paymee')
 export class PaymeeController {

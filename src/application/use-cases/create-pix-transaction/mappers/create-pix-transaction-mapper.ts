@@ -6,10 +6,10 @@ import {
   Transaction,
   TransactionProps,
 } from '@application/entities/transaction';
-import { IPayMeeResponse } from '@shared/infra/http/dtos/paymee/response/create-pix-transaction/IPayMeeResponse';
+import { CreatePixTransactionFullResponse } from '@shared/infra/http/dtos/paymee/response/create-pix-transaction/create-pix-transaction-full-response';
 
 export class CreatePixTransactionMapper {
-  static toDomain(data: IPayMeeResponse): TransactionProps {
+  static toDomain(data: CreatePixTransactionFullResponse): TransactionProps {
     const { response } = data;
 
     const { shopper, instructions } = data.response;

@@ -1,4 +1,4 @@
-export interface IPayMeeKeys {
+export interface KeysResponse {
   email: string;
   document: string;
 }

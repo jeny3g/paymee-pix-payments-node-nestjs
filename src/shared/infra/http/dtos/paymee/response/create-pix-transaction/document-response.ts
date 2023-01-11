@@ -1,6 +1,6 @@
 import { DocumentTypes } from '@shared/constants/document-types';
 
-export type Document = {
+export type DocumentResponse = {
   type: DocumentTypes;
   number: string;
 };

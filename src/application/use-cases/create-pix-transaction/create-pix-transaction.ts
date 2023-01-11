@@ -1,7 +1,7 @@
 import { TransactionsRepository } from '@application/repositories/transactions-repository';
 import { Injectable } from '@nestjs/common';
-import { ICreatePixTransaction } from '@shared/infra/http/dtos/paymee/request/create-transaction/ICreatePixTransaction';
-import { IPayMeeResponse } from '@shared/infra/http/dtos/paymee/response/create-pix-transaction/IPayMeeResponse';
+import { ICreatePixTransaction } from '@shared/infra/http/dtos/paymee/request/create-pix-transaction/ICreatePixTransaction';
+import { CreatePixTransactionFullResponse } from '@shared/infra/http/dtos/paymee/response/create-pix-transaction/create-pix-transaction-full-response';
 import { AppError } from '@shared/infra/http/errors/app-error';
 import { CreatePixError } from '@shared/infra/http/errors/create-pix-error';
 import { apiPayMee } from '@shared/services/api';
@@ -25,7 +25,7 @@ class CreatePixTransaction {
     }
 
     try {
-      const { data } = await apiPayMee.post<IPayMeeResponse>(
+      const { data } = await apiPayMee.post<CreatePixTransactionFullResponse>(
         'checkout/transparent',
         request,
       );

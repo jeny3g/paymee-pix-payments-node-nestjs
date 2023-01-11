@@ -1,7 +1,7 @@
 import { Phone } from '@prisma/client';
-import { Document } from './document';
+import { DocumentResponse } from './document-response';
 
-export type Shopper = {
+export type ShopperResponse = {
   id?: string;
   name: string;
   email: string;
@@ -10,6 +10,6 @@ export type Shopper = {
   agency?: string;
   account?: string;
 
-  document: Document;
+  document: DocumentResponse;
   phone: Phone;
 };
