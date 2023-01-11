@@ -1,10 +1,10 @@
-import { IPayMeePhone } from '@shared/infra/http/dtos/paymee/request/create-pix-transaction/IPayMeePhone';
+import { PhoneRequest } from '@shared/infra/http/dtos/paymee/request/create-pix-transaction/phone-request';
 
-type Override = Partial<IPayMeePhone>;
+type Override = Partial<PhoneRequest>;
 
 export function makePhoneTranscationFactory(
   override: Override = {},
-): IPayMeePhone {
+): PhoneRequest {
   return {
     type: 'MOBILE',
     number: '27938797884',

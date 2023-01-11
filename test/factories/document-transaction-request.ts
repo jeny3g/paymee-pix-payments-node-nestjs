@@ -1,11 +1,11 @@
 import { DocumentTypes } from '@shared/constants/document-types';
-import { IPayMeeDocument } from '@shared/infra/http/dtos/paymee/request/create-pix-transaction/IPayMeeDocument';
+import { DocumentRequest } from '@shared/infra/http/dtos/paymee/request/create-pix-transaction/document-request';
 
-type Override = Partial<IPayMeeDocument>;
+type Override = Partial<DocumentRequest>;
 
 export function makeDocumentTranscationFactory(
   override: Override = {},
-): IPayMeeDocument {
+): DocumentRequest {
   return {
     type: DocumentTypes.CPF,
     number: '452.956.960-81',

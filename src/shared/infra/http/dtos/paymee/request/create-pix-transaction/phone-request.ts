@@ -1,4 +1,4 @@
-export type IPayMeePhone = {
+export type PhoneRequest = {
   type: string;
   number: string;
 };

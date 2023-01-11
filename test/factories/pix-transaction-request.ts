@@ -1,14 +1,14 @@
 import { CurrencyTypes } from '@shared/constants/currency-types';
 import { PaymentMethodTypes } from '@shared/constants/payment-method-types';
-import { ICreatePixTransaction } from '@shared/infra/http/dtos/paymee/request/create-pix-transaction/ICreatePixTransaction';
+import { CreatePixTransactionRequest } from '@shared/infra/http/dtos/paymee/request/create-pix-transaction/create-pix-transaction-request';
 import { randomUUID } from 'crypto';
 import { makeShopperTranscationFactory } from './shopper-transaction-request';
 
-type Override = Partial<ICreatePixTransaction>;
+type Override = Partial<CreatePixTransactionRequest>;
 
 export function makeCreatePixTranscationFactory(
   override: Override = {},
-): ICreatePixTransaction {
+): CreatePixTransactionRequest {
   return {
     currency: CurrencyTypes.BRL,
     amount: 1.0,

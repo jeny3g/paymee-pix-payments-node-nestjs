@@ -1,6 +1,6 @@
 import { TransactionsRepository } from '@application/repositories/transactions-repository';
 import { BadGatewayException, Injectable } from '@nestjs/common';
-import { ICreatePixTransaction } from '@shared/infra/http/dtos/paymee/request/create-pix-transaction/ICreatePixTransaction';
+import { CreatePixTransactionRequest } from '@shared/infra/http/dtos/paymee/request/create-pix-transaction/create-pix-transaction-request';
 import { CreatePixTransactionFullResponse } from '@shared/infra/http/dtos/paymee/response/create-pix-transaction/create-pix-transaction-full-response';
 import { apiPayMee } from '@shared/services/api';
 import { CreatePixTransactionMapper } from './mappers/create-pix-transaction-mapper';
@@ -11,7 +11,9 @@ class CreatePixTransaction {
     private readonly transactionsRepository: TransactionsRepository,
   ) {}
 
-  async execute(request: ICreatePixTransaction): Promise<any> {
+  async execute(
+    request: CreatePixTransactionRequest,
+  ): Promise<CreatePixTransactionFullResponse> {
     try {
       const { data } = await apiPayMee.post<CreatePixTransactionFullResponse>(
         'checkout/transparent',

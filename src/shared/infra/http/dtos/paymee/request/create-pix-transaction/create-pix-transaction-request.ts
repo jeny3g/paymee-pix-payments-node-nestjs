@@ -1,8 +1,8 @@
 import { CurrencyTypes } from '@shared/constants/currency-types';
 import { PaymentMethodTypes } from '@shared/constants/payment-method-types';
-import { IPaymeeShopper } from './IPaymeeShopper';
+import { ShopperRequest } from './shopper-request';
 
-export type ICreatePixTransaction = {
+export type CreatePixTransactionRequest = {
   currency: CurrencyTypes;
   amount: number;
   referenceCode: string;
@@ -10,5 +10,5 @@ export type ICreatePixTransaction = {
   paymentMethod: PaymentMethodTypes;
   callbackURL: string;
 
-  shopper: IPaymeeShopper;
+  shopper: ShopperRequest;
 };
