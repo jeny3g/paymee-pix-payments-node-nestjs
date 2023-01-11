@@ -1,5 +1,5 @@
 import { CreatePixTransaction } from '@application/use-cases/create-pix-transaction/create-pix-transaction';
-import { GetPixTransaction } from '@application/use-cases/get-pix-transaction/get-pix-transaction';
+import { GetPixQRCodeTransaction } from '@application/use-cases/get-pix-qrcode-transaction/get-pix-qrcode-transaction';
 import { GetTransaction } from '@application/use-cases/get-transaction/get-transaction';
 import {
   IPayMeeNoticeRequest,
@@ -15,7 +15,7 @@ import { ICreatePixTransaction } from '../dtos/paymee/request/create-transaction
 @Controller('api/v1/paymee')
 export class PaymeeController {
   constructor(
-    private readonly getPixTransaction: GetPixTransaction,
+    private readonly getPixTransaction: GetPixQRCodeTransaction,
     private readonly createPixTransaction: CreatePixTransaction,
     private readonly getTransaction: GetTransaction,
     private readonly noticePixTransaction: NoticePixTransaction,

@@ -4,7 +4,7 @@ import { AppError } from '@shared/infra/http/errors/app-error';
 import { apiPayMee } from '@shared/services/api';
 
 @Injectable()
-class GetPixTransaction {
+class GetPixQRCodeTransaction {
   async execute(transactionId: string): Promise<IPayMeeQrCode> {
     try {
       const response = await apiPayMee.get<IPayMeeQrCode>(
@@ -18,4 +18,4 @@ class GetPixTransaction {
   }
 }
 
-export { GetPixTransaction };
+export { GetPixQRCodeTransaction };

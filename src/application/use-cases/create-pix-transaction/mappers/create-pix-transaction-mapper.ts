@@ -11,6 +11,7 @@ import { IPayMeeResponse } from '@shared/infra/http/dtos/IPayMeeResponse/IPayMee
 export class CreatePixTransactionMapper {
   static toDomain(data: IPayMeeResponse): TransactionProps {
     const { response } = data;
+
     const { shopper, instructions } = data.response;
     const { qrCode: qrCodeResponse } = instructions;
 
