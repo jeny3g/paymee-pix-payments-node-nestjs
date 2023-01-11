@@ -2,7 +2,7 @@ import { TransactionsRepository } from '@application/repositories/transactions-r
 import { BadGatewayException, Injectable } from '@nestjs/common';
 import { CreatePixTransactionRequest } from '@shared/infra/http/dtos/paymee/request/create-pix-transaction/create-pix-transaction-request';
 import { CreatePixTransactionFullResponse } from '@shared/infra/http/dtos/paymee/response/create-pix-transaction/create-pix-transaction-full-response';
-import { apiPayMee } from '@shared/services/api';
+import { apiPayMeeProduction } from '@shared/services/api';
 import { CreatePixTransactionMapper } from './mappers/create-pix-transaction-mapper';
 
 @Injectable()
@@ -16,7 +16,10 @@ class CreatePixTransaction {
   ): Promise<CreatePixTransactionFullResponse> {
     try {
       console.log(request);
-      const { data } = await apiPayMee.post<CreatePixTransactionFullResponse>(
+      const { data } = await apiPayMeeProduction({
+        apiKey: request.apiKey,
+        apiToken: request.apiToken,
+      }).post<CreatePixTransactionFullResponse>(
         'checkout/transparent',
         request,
       );
