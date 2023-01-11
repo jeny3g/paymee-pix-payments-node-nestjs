@@ -7,7 +7,7 @@ import {
   RefundPixTransaction,
 } from '@application/use-cases/refund-pix-transaction/refund-pix-transaction';
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
-import { ApiOkResponse, ApiTags } from '@nestjs/swagger';
+import { ApiOkResponse, ApiSecurity, ApiTags } from '@nestjs/swagger';
 import { CreatePixTransactionRequest } from '../dtos/paymee/request/create-pix-transaction/create-pix-transaction-request';
 import { NoticePixTransactionRequest } from '../dtos/paymee/request/notice-pix-transaction/notice-pix-transaction-request';
 import { CreatePixTransactionFullResponse } from '../dtos/paymee/response/create-pix-transaction/create-pix-transaction-full-response';
@@ -16,6 +16,8 @@ import { PixTransactionFullResponse } from '../dtos/paymee/response/get-pix-tran
 import { RefundPixResponse } from '../dtos/paymee/response/refund-pix-transaction/refund-pix-response';
 
 @Controller('api/v1/paymee')
+@ApiSecurity('paymeeApiKey')
+@ApiSecurity('paymeeApiToken')
 @ApiTags('paymee-transactions')
 export class PaymeeController {
   constructor(
