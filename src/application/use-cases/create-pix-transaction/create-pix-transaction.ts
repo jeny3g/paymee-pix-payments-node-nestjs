@@ -15,6 +15,7 @@ class CreatePixTransaction {
     request: CreatePixTransactionRequest,
   ): Promise<CreatePixTransactionFullResponse> {
     try {
+      console.log(request);
       const { data } = await apiPayMee.post<CreatePixTransactionFullResponse>(
         'checkout/transparent',
         request,

@@ -4,7 +4,7 @@ import axios from 'axios';
 import { APP_KEY_HEADER, APP_TOKEN_HEADER } from '../constants/api-path-paymee';
 
 const apiPayMee = axios.create({
-  baseURL: process.env.PAYMEE_API_URL,
+  baseURL: process.env.PAYMEE_API_URL_SANDBOX,
   headers: {
     Accept: 'application/json',
     'Content-Type': 'application/json',

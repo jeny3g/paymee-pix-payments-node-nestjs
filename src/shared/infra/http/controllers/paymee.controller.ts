@@ -2,14 +2,13 @@ import { CreatePixTransaction } from '@application/use-cases/create-pix-transact
 import { GetPixQRCodeTransaction } from '@application/use-cases/get-pix-qrcode-transaction/get-pix-qrcode-transaction';
 import { GetTransaction } from '@application/use-cases/get-transaction/get-transaction';
 import { NoticePixTransaction } from '@application/use-cases/notice-transaction/notice-transaction';
-import {
-  IRefundPixTransactionRequest,
-  RefundPixTransaction,
-} from '@application/use-cases/refund-pix-transaction/refund-pix-transaction';
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { RefundPixTransaction } from '@application/use-cases/refund-pix-transaction/refund-pix-transaction';
+import { Body, Controller, Get, Param, Post, Req } from '@nestjs/common';
 import { ApiOkResponse, ApiSecurity, ApiTags } from '@nestjs/swagger';
+import { Request } from 'express';
 import { CreatePixTransactionRequest } from '../dtos/paymee/request/create-pix-transaction/create-pix-transaction-request';
 import { NoticePixTransactionRequest } from '../dtos/paymee/request/notice-pix-transaction/notice-pix-transaction-request';
+import { RefundPixRequest } from '../dtos/paymee/request/refund-pix-transaction/refund-pix-request';
 import { CreatePixTransactionFullResponse } from '../dtos/paymee/response/create-pix-transaction/create-pix-transaction-full-response';
 import { QRCodeFullResponseResponse } from '../dtos/paymee/response/get-pix-qrcode-transaction/qr-code-full-response';
 import { PixTransactionFullResponse } from '../dtos/paymee/response/get-pix-transaction/pix-transaction-full-reponse';
@@ -36,8 +35,16 @@ export class PaymeeController {
   @Get('transactions/:transactionId')
   async getTransactionController(
     @Param('transactionId') transactionId: string,
+    @Req() req: Request,
   ): Promise<PixTransactionFullResponse> {
-    return await this.getTransaction.execute(transactionId);
+    const apiKey = req.headers['x-api-key'];
+    const apiToken = req.headers['x-api-token'];
+
+    return await this.getTransaction.execute({
+      transactionId,
+      apiKey: apiKey as string,
+      apiToken: apiToken as string,
+    });
   }
 
   @ApiOkResponse({
@@ -48,8 +55,16 @@ export class PaymeeController {
   @Get('transactions/pix/:transactionId')
   async getPixTransactionController(
     @Param('transactionId') transactionId: string,
+    @Req() req: Request,
   ): Promise<QRCodeFullResponseResponse> {
-    const response = await this.getPixTransaction.execute(transactionId);
+    const apiKey = req.headers['x-api-key'];
+    const apiToken = req.headers['x-api-token'];
+
+    const response = await this.getPixTransaction.execute({
+      transactionId,
+      apiKey: apiKey as string,
+      apiToken: apiToken as string,
+    });
 
     return response;
   }
@@ -62,8 +77,16 @@ export class PaymeeController {
   @Post('transactions/pix')
   async createPixTransactionController(
     @Body() body: CreatePixTransactionRequest,
+    @Req() req: Request,
   ): Promise<CreatePixTransactionFullResponse> {
-    const response = await this.createPixTransaction.execute(body);
+    const apiKey = req.headers['x-api-key'];
+    const apiToken = req.headers['x-api-token'];
+
+    const response = await this.createPixTransaction.execute({
+      ...body,
+      apiKey: apiKey as string,
+      apiToken: apiToken as string,
+    });
 
     return response;
   }
@@ -87,14 +110,20 @@ export class PaymeeController {
   @Post('transactions/:transactionId/refund')
   async refundPixTransactionController(
     @Param('transactionId') transactionId: string,
-    @Body() body: IRefundPixTransactionRequest,
+    @Body() body: RefundPixRequest,
+    @Req() req: Request,
   ): Promise<RefundPixResponse> {
     const { amount, reason } = body;
+
+    const apiKey = req.headers['x-api-key'];
+    const apiToken = req.headers['x-api-token'];
 
     const response = await this.refundPixTransaction.execute({
       transactionId,
       amount,
       reason,
+      apiKey: apiKey as string,
+      apiToken: apiToken as string,
     });
 
     return response;

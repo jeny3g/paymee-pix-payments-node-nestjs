@@ -1,12 +1,7 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
+import { RefundPixRequest } from '@shared/infra/http/dtos/paymee/request/refund-pix-transaction/refund-pix-request';
 import { RefundPixResponse } from '@shared/infra/http/dtos/paymee/response/refund-pix-transaction/refund-pix-response';
 import { apiPayMee } from '@shared/services/api';
-
-export interface IRefundPixTransactionRequest {
-  transactionId: string;
-  amount: number;
-  reason: string;
-}
 
 @Injectable()
 class RefundPixTransaction {
@@ -14,7 +9,7 @@ class RefundPixTransaction {
     transactionId,
     amount,
     reason,
-  }: IRefundPixTransactionRequest): Promise<RefundPixResponse> {
+  }: RefundPixRequest): Promise<RefundPixResponse> {
     try {
       const response = await apiPayMee.post<RefundPixResponse>(
         `/transactions/${transactionId}/refund`,
