@@ -4,13 +4,22 @@ import { QRCodeResponse } from './qr-code-response';
 import { StepsResponse } from './steps-reponse';
 
 export class InstructionsResponse {
-  @ApiProperty()
+  @ApiProperty({
+    description: 'Chosen payment method',
+    type: String,
+  })
   chosen: string;
 
-  @ApiProperty()
+  @ApiProperty({
+    description: 'Payment method name',
+    type: String,
+  })
   name: string;
 
-  @ApiProperty()
+  @ApiProperty({
+    description: 'Payment method label',
+    type: String,
+  })
   label: string;
 
   @ApiProperty()

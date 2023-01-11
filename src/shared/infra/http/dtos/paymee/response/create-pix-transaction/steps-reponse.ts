@@ -1,9 +1,13 @@
 import { ApiProperty } from "@nestjs/swagger";
 
 export class StepsResponse {
-  @ApiProperty()
+  @ApiProperty({
+    description: "Step QRCode",
+  })
   qrCode: string[];
 
-  @ApiProperty()
+  @ApiProperty({
+    description: "Step Keys",
+  })
   key: string[];
 }

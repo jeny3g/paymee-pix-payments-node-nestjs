@@ -3,9 +3,15 @@ import { KeysResponse } from './keys-response';
 import { QRCodeResponse } from './qr-code-response';
 
 export class BeneficiaryResponse{
-  @ApiProperty()
+  @ApiProperty({
+    description: 'QR Code response',
+    type: QRCodeResponse,
+  })
   qrCode: QRCodeResponse;
 
-  @ApiProperty()
+  @ApiProperty({
+    description: 'Keys response',
+    type: KeysResponse,
+  })
   keys: KeysResponse;
 }

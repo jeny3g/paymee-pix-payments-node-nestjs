@@ -1,9 +1,15 @@
 import { ApiProperty } from "@nestjs/swagger";
 
 export class KeysResponse {
-  @ApiProperty()
+  @ApiProperty({
+    description: "Key email",
+    type: String,
+  })
   email: string;
 
-  @ApiProperty()
+  @ApiProperty({
+    description: "Key document",
+    type: String
+  })
   document: string;
 }

@@ -4,19 +4,34 @@ import { ShopperResponse } from './shopper-response';
 
 
 export class CreatePixTransactionResponse {
-  @ApiProperty()
+  @ApiProperty({
+    description: 'Transaction id',
+    type: String,
+  })
   email: string;
 
-  @ApiProperty()
+  @ApiProperty({
+    description: 'Reference code must be your application unique id',
+    type: String,
+  })
   referenceCode: string;
 
-  @ApiProperty()
+  @ApiProperty({
+    description: 'Transaction amount',
+    type: Number,
+  })
   amount: number;
 
-  @ApiProperty()
+  @ApiProperty({
+    description: "Transaction sale code",
+    type: String,
+  })
   saleCode: string;
 
-  @ApiProperty()
+  @ApiProperty({
+    description: "Transaction uuid",
+    type: String,
+  })
   uuid: string;
 
   @ApiProperty()
