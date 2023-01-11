@@ -10,9 +10,11 @@ import {
   RefundPixTransaction,
 } from '@application/use-cases/refund-pix-transaction/refund-pix-transaction';
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { CreatePixTransactionRequest } from '../dtos/paymee/request/create-pix-transaction/create-pix-transaction-request';
 
 @Controller('api/v1/paymee')
+@ApiTags("paymee-transactions")
 export class PaymeeController {
   constructor(
     private readonly getPixTransaction: GetPixQRCodeTransaction,
