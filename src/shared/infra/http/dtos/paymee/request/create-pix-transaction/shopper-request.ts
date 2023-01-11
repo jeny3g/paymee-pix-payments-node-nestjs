@@ -3,26 +3,17 @@ import { DocumentRequest } from './document-request';
 import { PhoneRequest } from './phone-request';
 
 export class ShopperRequest {
-  @ApiProperty()
-  id?: string;
-
-  @ApiProperty()
+  @ApiProperty({
+    default: 'John Doe',
+    description: 'Name of the customer',
+  })
   name: string;
 
-  @ApiProperty()
+  @ApiProperty({
+    default: "john_doe@gmail.com",
+    description: "Email of the customer"
+  })
   email: string;
-
-  @ApiPropertyOptional()
-  firstName?: string;
-
-  @ApiPropertyOptional()
-  lastName?: string;
-
-  @ApiPropertyOptional()
-  agency?: string;
-
-  @ApiPropertyOptional()
-  account?: string;
 
   @ApiProperty()
   document: DocumentRequest;
