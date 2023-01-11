@@ -1,10 +1,7 @@
 import { CreatePixTransaction } from '@application/use-cases/create-pix-transaction/create-pix-transaction';
 import { GetPixQRCodeTransaction } from '@application/use-cases/get-pix-qrcode-transaction/get-pix-qrcode-transaction';
 import { GetTransaction } from '@application/use-cases/get-transaction/get-transaction';
-import {
-  IPayMeeNoticeRequest,
-  NoticePixTransaction,
-} from '@application/use-cases/notice-transaction/notice-transaction';
+import { NoticePixTransaction } from '@application/use-cases/notice-transaction/notice-transaction';
 import {
   IRefundPixTransactionRequest,
   RefundPixTransaction,
@@ -69,13 +66,15 @@ export class PaymeeController {
     return response;
   }
 
-
   @ApiOkResponse({
     type: NoticePixTransactionRequest,
-    description: 'Returns PayMee status response after creating a pix-transaction',
+    description:
+      'Returns PayMee status response after creating a pix-transaction',
   })
   @Post('transactions/notice')
-  async noticePixTransactionController(@Body() body: NoticePixTransactionRequest): Promise<NoticePixTransactionRequest> {
+  async noticePixTransactionController(
+    @Body() body: NoticePixTransactionRequest,
+  ): Promise<NoticePixTransactionRequest> {
     return await this.noticePixTransaction.execute(body);
   }
 
