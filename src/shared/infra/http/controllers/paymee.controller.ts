@@ -12,6 +12,7 @@ import {
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { CreatePixTransactionRequest } from '../dtos/paymee/request/create-pix-transaction/create-pix-transaction-request';
+import { NoticePixTransactionRequest } from '../dtos/paymee/request/notice-pix-transaction/notice-pix-transaction-request';
 import { CreatePixTransactionFullResponse } from '../dtos/paymee/response/create-pix-transaction/create-pix-transaction-full-response';
 import { QRCodeFullResponseResponse } from '../dtos/paymee/response/get-pix-qrcode-transaction/qr-code-full-response';
 import { PixTransactionFullResponse } from '../dtos/paymee/response/get-pix-transaction/pix-transaction-full-reponse';
@@ -68,11 +69,14 @@ export class PaymeeController {
     return response;
   }
 
-  @Post('transactions/notice')
-  async noticePixTransactionController(@Body() body: IPayMeeNoticeRequest) {
-    await this.noticePixTransaction.execute(body);
 
-    return { message: 'ok' };
+  @ApiOkResponse({
+    type: NoticePixTransactionRequest,
+    description: 'Returns PayMee status response after creating a pix-transaction',
+  })
+  @Post('transactions/notice')
+  async noticePixTransactionController(@Body() body: NoticePixTransactionRequest): Promise<NoticePixTransactionRequest> {
+    return await this.noticePixTransaction.execute(body);
   }
 
   @ApiOkResponse({
