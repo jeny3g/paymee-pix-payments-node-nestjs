@@ -7,7 +7,7 @@ import { randomUUID } from 'crypto';
 export type DocumentProps = {
   id?: string;
 
-  type: string;
+  type: DocumentTypes;
   number: string;
 };
 
@@ -34,7 +34,7 @@ export class Document {
     return this._id;
   }
 
-  get type(): string {
+  get type(): DocumentTypes {
     return this.props.type;
   }
 
