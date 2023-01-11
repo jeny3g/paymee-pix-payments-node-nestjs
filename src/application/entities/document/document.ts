@@ -1,7 +1,7 @@
+import { BadRequestException } from '@nestjs/common';
 import { DocumentTypes } from '@shared/constants/document-types';
 import { ErrorMessages } from '@shared/constants/error-messages';
 import { ValidationHelper } from '@shared/helpers/validation';
-import { AppError } from '@shared/infra/http/errors/app-error';
 import { randomUUID } from 'crypto';
 
 export type DocumentProps = {
@@ -48,7 +48,7 @@ export class Document {
     } else if (props.type === DocumentTypes.CNPJ) {
       return ValidationHelper.validateCNPJ(props.number);
     } else {
-      throw new AppError(ErrorMessages.INVALID_DOCUMENT_TYPE);
+      throw new BadRequestException(ErrorMessages.INVALID_DOCUMENT_TYPE);
     }
   }
 }

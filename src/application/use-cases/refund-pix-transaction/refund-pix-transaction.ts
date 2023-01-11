@@ -1,6 +1,5 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { RefundPixResponse } from '@shared/infra/http/dtos/paymee/response/refund-pix-transaction/refund-pix-response';
-import { AppError } from '@shared/infra/http/errors/app-error';
 import { apiPayMee } from '@shared/services/api';
 
 export interface IRefundPixTransactionRequest {
@@ -27,7 +26,10 @@ class RefundPixTransaction {
 
       return response.data;
     } catch (error) {
-      throw new AppError(error.message);
+      throw new BadRequestException(error.message, {
+        cause: error,
+        description: 'Error on refund pix transaction',
+      });
     }
   }
 }

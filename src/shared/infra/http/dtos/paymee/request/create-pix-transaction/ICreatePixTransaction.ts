@@ -1,12 +1,14 @@
+import { CurrencyTypes } from '@shared/constants/currency-types';
+import { PaymentMethodTypes } from '@shared/constants/payment-method-types';
 import { IPaymeeShopper } from './IPaymeeShopper';
 
-export interface ICreatePixTransaction {
-  currency: string;
+export type ICreatePixTransaction = {
+  currency: CurrencyTypes;
   amount: number;
   referenceCode: string;
   maxAge: number;
-  paymentMethod: string;
+  paymentMethod: PaymentMethodTypes;
   callbackURL: string;
 
   shopper: IPaymeeShopper;
-}
+};

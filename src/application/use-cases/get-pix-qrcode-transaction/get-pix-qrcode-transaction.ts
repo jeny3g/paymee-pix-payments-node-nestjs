@@ -1,6 +1,5 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { QRCodeFullResponseResponse } from '@shared/infra/http/dtos/paymee/response/get-pix-qrcode-transaction/qr-code-full-response';
-import { AppError } from '@shared/infra/http/errors/app-error';
 import { apiPayMee } from '@shared/services/api';
 
 @Injectable()
@@ -13,7 +12,10 @@ class GetPixQRCodeTransaction {
 
       return response.data;
     } catch (error) {
-      throw new AppError(error.message);
+      throw new BadRequestException(error.message, {
+        cause: error,
+        description: 'Error on get pix qrcode transaction',
+      });
     }
   }
 }
