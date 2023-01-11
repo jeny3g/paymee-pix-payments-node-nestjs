@@ -1,4 +1,4 @@
-import { IPaymeeShopper } from '@shared/infra/http/dtos/IPaymeeShopper';
+import { IPaymeeShopper } from '@shared/infra/http/dtos/paymee/request/create-transaction/IPaymeeShopper';
 import { makeDocumentTranscationFactory } from './document-transaction-request';
 import { makePhoneTranscationFactory } from './phone-transaction-request';
 

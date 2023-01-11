@@ -1,5 +1,5 @@
-import { IPaymeeShopper } from "../IPaymeeShopper";
-import { IPayMeeInstructions } from "./IPayMeeInstructions";
+import { IPaymeeShopper } from '../paymee/request/create-transaction/IPaymeeShopper';
+import { IPayMeeInstructions } from './IPayMeeInstructions';
 
 export interface IPayMeeCheckoutResponse {
   email: string;

@@ -1,6 +1,6 @@
-import { IPayMeePhone } from "../IPayMeePhone";
-import { IPayMeeBankDetails } from "../IPayMeeResponse/IPayMeeBankDetails";
-import { IPaymeeShopper } from "../IPaymeeShopper";
+import { IPayMeeBankDetails } from '../IPayMeeResponse/IPayMeeBankDetails';
+import { IPayMeePhone } from '../paymee/request/create-transaction/IPayMeePhone';
+import { IPaymeeShopper } from '../paymee/request/create-transaction/IPaymeeShopper';
 
 export interface IPayMeeRefundResponse {
   status: number;

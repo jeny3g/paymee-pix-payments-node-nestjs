@@ -1,4 +1,4 @@
-import { IPaymeeShopper } from '../IPaymeeShopper';
+import { IPaymeeShopper } from '../paymee/request/create-transaction/IPaymeeShopper';
 
 export type IPayMeePaymentConfirmationRequest = {
   saleToken: string;

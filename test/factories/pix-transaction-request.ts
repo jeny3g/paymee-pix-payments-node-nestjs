@@ -1,4 +1,4 @@
-import { ICreatePixTransaction } from '@shared/infra/http/dtos/ICreatePixTransaction/ICreatePixTransaction';
+import { ICreatePixTransaction } from '@shared/infra/http/dtos/paymee/request/create-transaction/ICreatePixTransaction';
 import { randomUUID } from 'crypto';
 import { makeShopperTranscationFactory } from './shopper-transaction-request';
 

@@ -1,4 +1,4 @@
-import { IPayMeePhone } from '@shared/infra/http/dtos/IPayMeePhone';
+import { IPayMeePhone } from '@shared/infra/http/dtos/paymee/request/create-transaction/IPayMeePhone';
 
 type Override = Partial<IPayMeePhone>;
 

@@ -1,5 +1,5 @@
 import { DocumentTypes } from '@shared/constants/document-types';
-import { IPayMeeDocument } from '@shared/infra/http/dtos/IPayMeeDocument';
+import { IPayMeeDocument } from '@shared/infra/http/dtos/paymee/request/create-transaction/IPayMeeDocument';
 
 type Override = Partial<IPayMeeDocument>;
 
