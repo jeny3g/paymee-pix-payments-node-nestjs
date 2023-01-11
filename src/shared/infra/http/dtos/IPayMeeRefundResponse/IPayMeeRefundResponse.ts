@@ -1,6 +1,6 @@
-import { IPayMeeBankDetails } from '../IPayMeeResponse/IPayMeeBankDetails';
 import { IPayMeePhone } from '../paymee/request/create-pix-transaction/IPayMeePhone';
 import { IPaymeeShopper } from '../paymee/request/create-pix-transaction/IPaymeeShopper';
+import { BankDetailsResponse } from '../paymee/response/get-pix-transaction/bank-details-response';
 
 export interface IPayMeeRefundResponse {
   status: number;
@@ -12,7 +12,7 @@ export interface IPayMeeRefundResponse {
   totalRefund: number;
 
   shopper: IPaymeeShopper;
-  bankDetails: IPayMeeBankDetails;
+  bankDetails: BankDetailsResponse;
   phone: IPayMeePhone;
 
   currentBalance: number;

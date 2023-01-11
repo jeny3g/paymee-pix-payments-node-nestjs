@@ -1,6 +1,6 @@
-import { IPayMeeBankDetails } from "./IPayMeeBankDetails";
+import { BankDetailsResponse } from './bank-details-response';
 
-export type IPayMeePayoutResponse = {
+export type PixTransactionFullResponse = {
   success: boolean;
   message: string;
   id: number;
@@ -14,7 +14,7 @@ export type IPayMeePayoutResponse = {
   creation: Date;
   maxAge: Date;
 
-  bankDetails: IPayMeeBankDetails;
+  bankDetails: BankDetailsResponse;
 
   receipt: string;
   error_code: string;
