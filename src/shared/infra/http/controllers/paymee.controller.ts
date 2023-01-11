@@ -13,6 +13,8 @@ import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { CreatePixTransactionRequest } from '../dtos/paymee/request/create-pix-transaction/create-pix-transaction-request';
 import { CreatePixTransactionFullResponse } from '../dtos/paymee/response/create-pix-transaction/create-pix-transaction-full-response';
+import { QRCodeFullResponseResponse } from '../dtos/paymee/response/get-pix-qrcode-transaction/qr-code-full-response';
+import { PixTransactionFullResponse } from '../dtos/paymee/response/get-pix-transaction/pix-transaction-full-reponse';
 
 @Controller('api/v1/paymee')
 @ApiTags("paymee-transactions")
@@ -25,17 +27,27 @@ export class PaymeeController {
     private readonly refundPixTransaction: RefundPixTransaction,
   ) {}
 
+
+  @ApiOkResponse({
+    type: PixTransactionFullResponse,
+    description: 'Returns PayMee response after creating a pix-transaction with QRCODE instructions',
+  })
   @Get('transactions/:transactionId')
   async getTransactionController(
     @Param('transactionId') transactionId: string,
-  ) {
+  ): Promise<PixTransactionFullResponse> {
     return await this.getTransaction.execute(transactionId);
   }
 
+
+  @ApiOkResponse({
+    type: QRCodeFullResponseResponse,
+    description: 'Returns PayMee response after creating a pix-transaction with QRCODE instructions',
+  })
   @Get('transactions/pix/:transactionId')
   async getPixTransactionController(
     @Param('transactionId') transactionId: string,
-  ) {
+  ) : Promise<QRCodeFullResponseResponse>{
     const response = await this.getPixTransaction.execute(transactionId);
 
     return response;
@@ -48,7 +60,7 @@ export class PaymeeController {
   @Post('transactions/pix')
   async createPixTransactionController(
     @Body() body: CreatePixTransactionRequest,
-  ) {
+  ): Promise<CreatePixTransactionFullResponse> {
     const response = await this.createPixTransaction.execute(body);
 
     return response;
