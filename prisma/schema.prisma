@@ -20,8 +20,9 @@ model Transaction {
   customer Customer? @relation(fields: [customerId], references: [id])
   qrCode   QRCode?   @relation(fields: [qRCodeId], references: [id])
 
-  qRCodeId   String?
-  customerId String?
+  transactionId String?
+  qRCodeId      String?
+  customerId    String?
 }
 
 model QRCode {

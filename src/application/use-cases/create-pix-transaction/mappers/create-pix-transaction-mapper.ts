@@ -42,6 +42,7 @@ export class CreatePixTransactionMapper {
       status: String(data.status),
       customer,
       qrCode,
+      transactionId: response.uuid,
     });
 
     const transactionProps: TransactionProps = {

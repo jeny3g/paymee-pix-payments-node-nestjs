@@ -10,6 +10,8 @@ export type TransactionProps = {
   status: string;
   customer: CustomerProps;
   qrCode: QRCodeProps;
+
+  transactionId: string;
 };
 
 export type UnsavedTransactionProps = Omit<
@@ -61,5 +63,9 @@ export class Transaction {
 
   get qrCode(): QRCodeProps {
     return this.props.qrCode;
+  }
+
+  get transactionId(): string {
+    return this.props.transactionId;
   }
 }
