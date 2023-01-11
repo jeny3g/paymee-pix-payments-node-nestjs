@@ -1,13 +1,13 @@
 import { Injectable } from '@nestjs/common';
-import { IPayMeeQrCode } from '@shared/infra/http/dtos/IPayMeeResponse/IPayMeeQrCode';
+import { IPayMeeQrCodeResponse } from '@shared/infra/http/dtos/paymee/response/get-qrcode-transaction/IPayMeeQrCode';
 import { AppError } from '@shared/infra/http/errors/app-error';
 import { apiPayMee } from '@shared/services/api';
 
 @Injectable()
 class GetPixQRCodeTransaction {
-  async execute(transactionId: string): Promise<IPayMeeQrCode> {
+  async execute(transactionId: string): Promise<IPayMeeQrCodeResponse> {
     try {
-      const response = await apiPayMee.get<IPayMeeQrCode>(
+      const response = await apiPayMee.get<IPayMeeQrCodeResponse>(
         `transactions/pix/${transactionId}`,
       );
 
