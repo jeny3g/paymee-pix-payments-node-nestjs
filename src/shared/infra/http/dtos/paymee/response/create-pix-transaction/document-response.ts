@@ -4,7 +4,6 @@ import { DocumentTypes } from '@shared/constants/document-types';
 export class DocumentResponse {
   @ApiProperty({
     description: 'Document type',
-    type: DocumentTypes,
   })
   type: DocumentTypes;
 

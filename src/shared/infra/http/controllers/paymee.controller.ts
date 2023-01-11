@@ -15,9 +15,10 @@ import { CreatePixTransactionRequest } from '../dtos/paymee/request/create-pix-t
 import { CreatePixTransactionFullResponse } from '../dtos/paymee/response/create-pix-transaction/create-pix-transaction-full-response';
 import { QRCodeFullResponseResponse } from '../dtos/paymee/response/get-pix-qrcode-transaction/qr-code-full-response';
 import { PixTransactionFullResponse } from '../dtos/paymee/response/get-pix-transaction/pix-transaction-full-reponse';
+import { RefundPixResponse } from '../dtos/paymee/response/refund-pix-transaction/refund-pix-response';
 
 @Controller('api/v1/paymee')
-@ApiTags("paymee-transactions")
+@ApiTags('paymee-transactions')
 export class PaymeeController {
   constructor(
     private readonly getPixTransaction: GetPixQRCodeTransaction,
@@ -27,10 +28,10 @@ export class PaymeeController {
     private readonly refundPixTransaction: RefundPixTransaction,
   ) {}
 
-
   @ApiOkResponse({
     type: PixTransactionFullResponse,
-    description: 'Returns PayMee response after creating a pix-transaction with QRCODE instructions',
+    description:
+      'Returns PayMee response after creating a pix-transaction with QRCODE instructions',
   })
   @Get('transactions/:transactionId')
   async getTransactionController(
@@ -39,15 +40,15 @@ export class PaymeeController {
     return await this.getTransaction.execute(transactionId);
   }
 
-
   @ApiOkResponse({
     type: QRCodeFullResponseResponse,
-    description: 'Returns PayMee response after creating a pix-transaction with QRCODE instructions',
+    description:
+      'Returns PayMee response after creating a pix-transaction with QRCODE instructions',
   })
   @Get('transactions/pix/:transactionId')
   async getPixTransactionController(
     @Param('transactionId') transactionId: string,
-  ) : Promise<QRCodeFullResponseResponse>{
+  ): Promise<QRCodeFullResponseResponse> {
     const response = await this.getPixTransaction.execute(transactionId);
 
     return response;
@@ -55,7 +56,8 @@ export class PaymeeController {
 
   @ApiOkResponse({
     type: CreatePixTransactionFullResponse,
-    description: 'Returns PayMee response after creating a pix-transaction with QRCODE',
+    description:
+      'Returns PayMee response after creating a pix-transaction with QRCODE',
   })
   @Post('transactions/pix')
   async createPixTransactionController(
@@ -73,11 +75,15 @@ export class PaymeeController {
     return { message: 'ok' };
   }
 
+  @ApiOkResponse({
+    type: RefundPixResponse,
+    description: 'Returns PayMee response after refunding a pix-transaction',
+  })
   @Post('transactions/:transactionId/refund')
   async refundPixTransactionController(
     @Param('transactionId') transactionId: string,
     @Body() body: IRefundPixTransactionRequest,
-  ) {
+  ): Promise<RefundPixResponse> {
     const { amount, reason } = body;
 
     const response = await this.refundPixTransaction.execute({
