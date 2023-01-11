@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { IPayMeeRefundResponse } from '@shared/infra/http/dtos/IPayMeeRefundResponse/IPayMeeRefundResponse';
+import { RefundPixResponse } from '@shared/infra/http/dtos/paymee/response/refund-pix-transaction/refund-pix-response';
 import { AppError } from '@shared/infra/http/errors/app-error';
 import { apiPayMee } from '@shared/services/api';
 
@@ -15,9 +15,9 @@ class RefundPixTransaction {
     transactionId,
     amount,
     reason,
-  }: IRefundPixTransactionRequest): Promise<IPayMeeRefundResponse> {
+  }: IRefundPixTransactionRequest): Promise<RefundPixResponse> {
     try {
-      const response = await apiPayMee.post<IPayMeeRefundResponse>(
+      const response = await apiPayMee.post<RefundPixResponse>(
         `/transactions/${transactionId}/refund`,
         {
           amount,
