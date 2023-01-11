@@ -10,8 +10,9 @@ import {
   RefundPixTransaction,
 } from '@application/use-cases/refund-pix-transaction/refund-pix-transaction';
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { CreatePixTransactionRequest } from '../dtos/paymee/request/create-pix-transaction/create-pix-transaction-request';
+import { CreatePixTransactionFullResponse } from '../dtos/paymee/response/create-pix-transaction/create-pix-transaction-full-response';
 
 @Controller('api/v1/paymee')
 @ApiTags("paymee-transactions")
@@ -40,6 +41,10 @@ export class PaymeeController {
     return response;
   }
 
+  @ApiOkResponse({
+    type: CreatePixTransactionFullResponse,
+    description: 'Returns PayMee response after creating a pix-transaction with QRCODE',
+  })
   @Post('transactions/pix')
   async createPixTransactionController(
     @Body() body: CreatePixTransactionRequest,
