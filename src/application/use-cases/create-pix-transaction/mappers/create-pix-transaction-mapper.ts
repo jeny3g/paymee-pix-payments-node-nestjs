@@ -6,7 +6,7 @@ import {
   Transaction,
   TransactionProps,
 } from '@application/entities/transaction';
-import { IPayMeeResponse } from '@shared/infra/http/dtos/IPayMeeResponse/IPayMeeResponse';
+import { IPayMeeResponse } from '@shared/infra/http/dtos/paymee/response/create-pix-transaction/IPayMeeResponse';
 
 export class CreatePixTransactionMapper {
   static toDomain(data: IPayMeeResponse): TransactionProps {

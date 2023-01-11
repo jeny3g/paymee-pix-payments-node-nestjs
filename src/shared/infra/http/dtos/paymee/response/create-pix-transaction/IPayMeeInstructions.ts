@@ -1,6 +1,6 @@
-import { IPayMeeBeneficiary } from "./IPayMeeBeneficiary";
-import { IPayMeeQrCode } from "./IPayMeeQrCode";
-import { IPayMeeSteps } from "./IPayMeeSteps";
+import { IPayMeeBeneficiary } from './IPayMeeBeneficiary';
+import { IPayMeeQrCode } from './IPayMeeQrCode';
+import { IPayMeeSteps } from './IPayMeeSteps';
 
 export interface IPayMeeInstructions {
   chosen: string;

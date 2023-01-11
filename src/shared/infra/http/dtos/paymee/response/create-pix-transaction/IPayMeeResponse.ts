@@ -1,4 +1,4 @@
-import { IPayMeeCheckoutResponse } from "./IPayMeeCheckoutResponse";
+import { IPayMeeCheckoutResponse } from './IPayMeeCheckoutResponse';
 
 export interface IPayMeeResponse {
   status: string;

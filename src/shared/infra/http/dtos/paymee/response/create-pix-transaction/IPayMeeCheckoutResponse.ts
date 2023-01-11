@@ -1,5 +1,5 @@
-import { IPaymeeShopper } from '../paymee/request/create-transaction/IPaymeeShopper';
 import { IPayMeeInstructions } from './IPayMeeInstructions';
+import { Shopper } from './shopper';
 
 export interface IPayMeeCheckoutResponse {
   email: string;
@@ -8,6 +8,6 @@ export interface IPayMeeCheckoutResponse {
   saleCode: string;
   uuid: string;
 
-  shopper: IPaymeeShopper;
+  shopper: Shopper;
   instructions: IPayMeeInstructions;
 }

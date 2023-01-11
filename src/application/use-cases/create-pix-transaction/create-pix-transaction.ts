@@ -1,7 +1,7 @@
 import { TransactionsRepository } from '@application/repositories/transactions-repository';
 import { Injectable } from '@nestjs/common';
-import { IPayMeeResponse } from '@shared/infra/http/dtos/IPayMeeResponse/IPayMeeResponse';
 import { ICreatePixTransaction } from '@shared/infra/http/dtos/paymee/request/create-transaction/ICreatePixTransaction';
+import { IPayMeeResponse } from '@shared/infra/http/dtos/paymee/response/create-pix-transaction/IPayMeeResponse';
 import { AppError } from '@shared/infra/http/errors/app-error';
 import { CreatePixError } from '@shared/infra/http/errors/create-pix-error';
 import { apiPayMee } from '@shared/services/api';

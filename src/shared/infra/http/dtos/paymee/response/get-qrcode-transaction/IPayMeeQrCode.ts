@@ -1,4 +1,4 @@
-import { IPayMeeQrCode } from '../../../IPayMeeResponse/IPayMeeQrCode';
+import { IPayMeeQrCode } from '../create-pix-transaction/IPayMeeQrCode';
 
 export type IPayMeeQrCodeResponse = {
   qrCode: IPayMeeQrCode;
