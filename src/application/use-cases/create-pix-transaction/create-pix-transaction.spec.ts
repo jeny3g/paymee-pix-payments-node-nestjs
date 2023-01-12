@@ -4,7 +4,7 @@ import { InMemoryPayMeeServiceRepository } from '@tests/repositories/in-memory-p
 import { InMemoryTransactionsRepository } from '@tests/repositories/in-memory-transactions-repository';
 import { CreatePixTransaction } from './create-pix-transaction';
 
-export const makeCreatePixNotificationFactory =
+export const makeCreatePixTransactionFactory =
   async (): Promise<CreatePixTransactionFullResponse> => {
     const createPixRequest = makeCreatePixTranscationFactory();
 
@@ -25,7 +25,7 @@ export const makeCreatePixNotificationFactory =
 
 describe('CreatePixTransaction', () => {
   it('should be able to create a pix transaction', async () => {
-    const createdPixTransaction = await makeCreatePixNotificationFactory();
+    const createdPixTransaction = await makeCreatePixTransactionFactory();
 
     expect(createdPixTransaction).toHaveProperty('status');
     expect(createdPixTransaction).toHaveProperty('message');

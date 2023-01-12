@@ -1,3 +1,5 @@
+import 'dotenv/config';
+
 import { PayMeeServiceRepository } from '@application/repositories/paymee-service-repository';
 import {
   APP_KEY_HEADER,

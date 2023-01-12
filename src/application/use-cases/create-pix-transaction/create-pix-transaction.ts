@@ -16,7 +16,6 @@ class CreatePixTransaction {
     request: CreatePixTransactionRequest,
   ): Promise<CreatePixTransactionFullResponse> {
     try {
-      console.log(request);
       const { data } = await this.paymeeService
         .api()
         .post<CreatePixTransactionFullResponse>(

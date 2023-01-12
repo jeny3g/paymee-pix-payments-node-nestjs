@@ -1,12 +1,11 @@
 import { PayMeeServiceRepository } from '@application/repositories/paymee-service-repository';
-import { Inject, Injectable, Request } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
+import { REQUEST } from '@nestjs/core';
 import {
   APP_KEY_HEADER,
   APP_TOKEN_HEADER,
 } from '@shared/constants/api-path-paymee';
 import axios, { AxiosInstance } from 'axios';
-import { REQUEST } from '@nestjs/core';
-
 
 @Injectable()
 export class PayMeeService implements PayMeeServiceRepository {

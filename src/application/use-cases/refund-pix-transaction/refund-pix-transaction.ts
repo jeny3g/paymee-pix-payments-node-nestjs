@@ -22,7 +22,6 @@ class RefundPixTransaction {
 
       return data;
     } catch (error) {
-      console.log(error);
       throw new BadRequestException(error.message, {
         cause: error,
         description: 'Error on refund pix transaction',
