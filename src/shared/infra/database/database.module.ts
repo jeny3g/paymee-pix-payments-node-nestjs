@@ -1,7 +1,7 @@
 import { TransactionsRepository } from '@application/repositories/transactions-repository';
 import { Module } from '@nestjs/common';
-import { PrismaTransactionRepository } from './prisma/repositories/prisma-transactions-repository';
 import { PrismaService } from './prisma/prisma.service';
+import { PrismaTransactionRepository } from './prisma/repositories/prisma-transactions-repository';
 
 @Module({
   providers: [
