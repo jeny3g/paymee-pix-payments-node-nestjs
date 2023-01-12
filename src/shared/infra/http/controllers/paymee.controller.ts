@@ -3,9 +3,8 @@ import { GetPixQRCodeTransaction } from '@application/use-cases/get-pix-qrcode-t
 import { GetTransaction } from '@application/use-cases/get-transaction/get-transaction';
 import { NoticePixTransaction } from '@application/use-cases/notice-transaction/notice-transaction';
 import { RefundPixTransaction } from '@application/use-cases/refund-pix-transaction/refund-pix-transaction';
-import { Body, Controller, Get, Param, Post, Req } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { ApiOkResponse, ApiSecurity, ApiTags } from '@nestjs/swagger';
-import { Request } from 'express';
 import { CreatePixTransactionRequest } from '../dtos/paymee/request/create-pix-transaction/create-pix-transaction-request';
 import { NoticePixTransactionRequest } from '../dtos/paymee/request/notice-pix-transaction/notice-pix-transaction-request';
 import { RefundPixRequest } from '../dtos/paymee/request/refund-pix-transaction/refund-pix-request';
@@ -35,15 +34,9 @@ export class PaymeeController {
   @Get('transactions/:transactionId')
   async getTransactionController(
     @Param('transactionId') transactionId: string,
-    @Req() req: Request,
   ): Promise<PixTransactionFullResponse> {
-    const apiKey = req.headers['x-api-key'];
-    const apiToken = req.headers['x-api-token'];
-
     return await this.getTransaction.execute({
       transactionId,
-      apiKey: apiKey as string,
-      apiToken: apiToken as string,
     });
   }
 
@@ -55,15 +48,9 @@ export class PaymeeController {
   @Get('transactions/pix/:transactionId')
   async getPixTransactionController(
     @Param('transactionId') transactionId: string,
-    @Req() req: Request,
   ): Promise<QRCodeFullResponseResponse> {
-    const apiKey = req.headers['x-api-key'];
-    const apiToken = req.headers['x-api-token'];
-
     const response = await this.getPixTransaction.execute({
       transactionId,
-      apiKey: apiKey as string,
-      apiToken: apiToken as string,
     });
 
     return response;
@@ -77,16 +64,8 @@ export class PaymeeController {
   @Post('transactions/pix')
   async createPixTransactionController(
     @Body() body: CreatePixTransactionRequest,
-    @Req() req: Request,
   ): Promise<CreatePixTransactionFullResponse> {
-    const apiKey = req.headers['x-api-key'];
-    const apiToken = req.headers['x-api-token'];
-
-    const response = await this.createPixTransaction.execute({
-      ...body,
-      apiKey: apiKey as string,
-      apiToken: apiToken as string,
-    });
+    const response = await this.createPixTransaction.execute(body);
 
     return response;
   }
@@ -111,19 +90,13 @@ export class PaymeeController {
   async refundPixTransactionController(
     @Param('transactionId') transactionId: string,
     @Body() body: RefundPixRequest,
-    @Req() req: Request,
   ): Promise<RefundPixResponse> {
     const { amount, reason } = body;
-
-    const apiKey = req.headers['x-api-key'];
-    const apiToken = req.headers['x-api-token'];
 
     const response = await this.refundPixTransaction.execute({
       transactionId,
       amount,
       reason,
-      apiKey: apiKey as string,
-      apiToken: apiToken as string,
     });
 
     return response;

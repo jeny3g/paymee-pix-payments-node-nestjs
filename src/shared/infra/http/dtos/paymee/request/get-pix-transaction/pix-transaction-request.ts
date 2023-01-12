@@ -1,5 +1,3 @@
-import { BaseRequest } from '../base-request';
-
-export class PixTransactionRequest extends BaseRequest {
+export class PixTransactionRequest {
   transactionId: string;
 }

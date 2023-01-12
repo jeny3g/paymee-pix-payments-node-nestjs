@@ -9,8 +9,6 @@ class GetPixQRCodeTransaction {
 
   async execute({
     transactionId,
-    apiKey,
-    apiToken,
   }: PixQRCodeRequest): Promise<QRCodeFullResponseResponse> {
     try {
       const { data } = await this.paymeeService

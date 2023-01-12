@@ -2,10 +2,9 @@ import { ApiProperty } from '@nestjs/swagger';
 import { CurrencyTypes } from '@shared/constants/currency-types';
 import { PaymentMethodTypes } from '@shared/constants/payment-method-types';
 import { randomUUID } from 'crypto';
-import { BaseRequest } from '../base-request';
 import { ShopperRequest } from './shopper-request';
 
-export class CreatePixTransactionRequest extends BaseRequest {
+export class CreatePixTransactionRequest {
   @ApiProperty({
     default: CurrencyTypes.BRL,
     description: 'Currency of the transaction',

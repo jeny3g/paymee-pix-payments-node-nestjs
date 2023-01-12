@@ -11,8 +11,6 @@ class RefundPixTransaction {
     transactionId,
     amount,
     reason,
-    apiKey,
-    apiToken,
   }: RefundPixRequest): Promise<RefundPixResponse> {
     try {
       const { data } = await this.paymeeService

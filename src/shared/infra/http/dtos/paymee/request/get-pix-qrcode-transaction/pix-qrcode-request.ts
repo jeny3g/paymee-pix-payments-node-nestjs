@@ -1,5 +1,3 @@
-import { BaseRequest } from '../base-request';
-
-export class PixQRCodeRequest extends BaseRequest {
+export class PixQRCodeRequest {
   transactionId: string;
 }

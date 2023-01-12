@@ -9,8 +9,6 @@ class GetTransaction {
 
   async execute({
     transactionId,
-    apiKey,
-    apiToken,
   }: PixTransactionRequest): Promise<PixTransactionFullResponse> {
     try {
       const { data } = await this.paymeeService
