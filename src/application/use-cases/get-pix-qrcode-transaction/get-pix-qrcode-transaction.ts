@@ -1,11 +1,11 @@
+import { PayMeeServiceRepository } from '@application/repositories/paymee-service-repository';
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { PixQRCodeRequest } from '@shared/infra/http/dtos/paymee/request/get-pix-qrcode-transaction/pix-qrcode-request';
 import { QRCodeFullResponseResponse } from '@shared/infra/http/dtos/paymee/response/get-pix-qrcode-transaction/qr-code-full-response';
-import { PayMeeService } from '@shared/services/paymee/paymee.service';
 
 @Injectable()
 class GetPixQRCodeTransaction {
-  constructor(private readonly paymeeService: PayMeeService) {}
+  constructor(private readonly paymeeService: PayMeeServiceRepository) {}
 
   async execute({
     transactionId,

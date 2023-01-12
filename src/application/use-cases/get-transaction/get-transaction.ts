@@ -1,11 +1,11 @@
+import { PayMeeServiceRepository } from '@application/repositories/paymee-service-repository';
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { PixTransactionRequest } from '@shared/infra/http/dtos/paymee/request/get-pix-transaction/pix-transaction-request';
 import { PixTransactionFullResponse } from '@shared/infra/http/dtos/paymee/response/get-pix-transaction/pix-transaction-full-reponse';
-import { PayMeeService } from '@shared/services/paymee/paymee.service';
 
 @Injectable()
 class GetTransaction {
-  constructor(private readonly paymeeService: PayMeeService) {}
+  constructor(private readonly paymeeService: PayMeeServiceRepository) {}
 
   async execute({
     transactionId,

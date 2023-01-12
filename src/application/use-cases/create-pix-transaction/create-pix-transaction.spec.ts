@@ -1,5 +1,6 @@
 import { CreatePixTransactionFullResponse } from '@shared/infra/http/dtos/paymee/response/create-pix-transaction/create-pix-transaction-full-response';
 import { makeCreatePixTranscationFactory } from '@tests/factories/pix-transaction-request';
+import { InMemoryPayMeeServiceRepository } from '@tests/repositories/in-memory-paymee-service-repository';
 import { InMemoryTransactionsRepository } from '@tests/repositories/in-memory-transactions-repository';
 import { CreatePixTransaction } from './create-pix-transaction';
 
@@ -8,8 +9,11 @@ export const makeCreatePixNotificationFactory =
     const createPixRequest = makeCreatePixTranscationFactory();
 
     const transactionsRepository = new InMemoryTransactionsRepository();
+    const payMeeServiceRepository = new InMemoryPayMeeServiceRepository();
+
     const createPixTransaction = new CreatePixTransaction(
       transactionsRepository,
+      payMeeServiceRepository,
     );
 
     const createdPixTransaction = await createPixTransaction.execute(
