@@ -1,20 +1,21 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { PixQRCodeRequest } from '@shared/infra/http/dtos/paymee/request/get-pix-qrcode-transaction/pix-qrcode-request';
 import { QRCodeFullResponseResponse } from '@shared/infra/http/dtos/paymee/response/get-pix-qrcode-transaction/qr-code-full-response';
-import { apiPayMeeProduction } from '@shared/services/api';
+import { PayMeeService } from '@shared/services/paymee/paymee.service';
 
 @Injectable()
 class GetPixQRCodeTransaction {
+  constructor(private readonly paymeeService: PayMeeService) {}
+
   async execute({
     transactionId,
     apiKey,
     apiToken,
   }: PixQRCodeRequest): Promise<QRCodeFullResponseResponse> {
     try {
-      const { data } = await apiPayMeeProduction({
-        apiKey,
-        apiToken,
-      }).get<QRCodeFullResponseResponse>(`transactions/pix/${transactionId}`);
+      const { data } = await this.paymeeService
+        .api()
+        .get<QRCodeFullResponseResponse>(`transactions/pix/${transactionId}`);
 
       return data;
     } catch (error) {
