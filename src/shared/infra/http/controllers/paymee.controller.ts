@@ -102,3 +102,4 @@ export class PaymeeController {
     return response;
   }
 }
+console.log('Funcionalidade de listagem de pix 😼')
